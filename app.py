@@ -12,6 +12,7 @@ import json
 import requests
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
+from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity, manhattan_distances
 from sklearn.preprocessing import MinMaxScaler
 
@@ -28,18 +29,6 @@ def load_data():
     # Load the main training dataframe
     train_df = pd.read_csv('train_processed.csv')
     
-    # Load the TF-IDF vectorizer
-    with open('tfidf_vectorizer.pkl', 'rb') as f:
-        vectorizer = pickle.load(f)
-        
-    # Load the numerical scaler
-    with open('scaler.pkl', 'rb') as f:
-        scaler = pickle.load(f)
-        
-    # Load the pre-computed vectors and numerical data
-    tfidf_train_vectors = np.load('tfidf_train_vectors.npy')
-    train_numerical_scaled = np.load('train_numerical_scaled.npy')
-    
     # Ensure NLTK data is downloaded (for text preprocessing)
     try:
         stopwords.words('english')
@@ -48,10 +37,23 @@ def load_data():
         nltk.download('punkt')
         nltk.download('wordnet')
 
+    # --- Generate model components on the fly ---
+    # This replaces loading pre-computed .npy files
+    
+    # 1. Create and fit the TF-IDF Vectorizer
+    vectorizer = TfidfVectorizer(max_features=5000)
+    tfidf_train_vectors = vectorizer.fit_transform(train_df['corpus'].fillna(''))
+    
+    # 2. Create and fit the numerical Scaler
+    scaler = MinMaxScaler()
+    numerical_features = ['points', 'price', 'value_score']
+    train_df['value_score'] = train_df['value_score'].fillna(0.5)
+    train_numerical_scaled = scaler.fit_transform(train_df[numerical_features])
+
     # Create a dictionary for country flag emojis
     country_flags = {
-        'US': '🇺🇸', 'France': '🇫🇷', 'Italy': '🇮🇹', 'Spain': '🇪�',
-        'Portugal': '🇵🇹', 'Chile': '🇨🇱', 'Argentina': '🇦🇷',
+        'US': '🇺🇸', 'France': '🇫🇷', 'Italy': '🇮🇹', 'Spain': '🇪🇸',
+        'Portugal': '🇵�', 'Chile': '🇨🇱', 'Argentina': '🇦🇷',
         'Austria': '🇦🇹', 'Australia': '🇦🇺', 'Germany': '🇩🇪'
     }
     
@@ -196,11 +198,13 @@ with col2:
 
 if find_button:
     st.session_state.num_to_show = 5 # Reset display count on new search
+    # Prioritize text input if the user has typed something
     if st.session_state.user_query:
         st.session_state.user_input = st.session_state.user_query
         with st.spinner('Searching for wines based on your description...'):
             st.session_state.recommendations = get_recommendations_from_text(st.session_state.user_query)
             st.session_state.summary = generate_steward_summary(st.session_state.user_query, st.session_state.recommendations)
+    # If text input is empty, use the dropdown selection
     elif st.session_state.selected_wine != "- Select a wine you like -":
         st.session_state.user_input = st.session_state.selected_wine
         with st.spinner('Finding the perfect matches for you...'):
