@@ -11,4 +11,8 @@ __pycache__/
 # Jupyter Notebook checkpoints
 .ipynb_checkpoints/
 
+# Data files
 *.npy
+
+# Streamlit secrets
+.streamlit/secrets.toml
