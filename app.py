@@ -53,8 +53,8 @@ def load_data():
     # Create a dictionary for country flag emojis
     country_flags = {
         'US': '🇺🇸', 'France': '🇫🇷', 'Italy': '🇮🇹', 'Spain': '🇪🇸',
-        'Portugal': '🇵�', 'Chile': '🇨🇱', 'Argentina': '🇦🇷',
-        'Austria': '🇦🇹', 'Australia': '🇦🇺', 'Germany': '🇩🇪'
+        'Portugal': '🇵🇹', 'Chile': '🇨🇱', 'Argentina': '🇦🇷',
+        'Austria': '🇦🇹', 'Australia': '�🇺', 'Germany': '🇩🇪'
     }
     
     return train_df, vectorizer, scaler, tfidf_train_vectors, train_numerical_scaled, country_flags
