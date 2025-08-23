@@ -29,13 +29,10 @@ def load_data():
     # Load the main training dataframe
     train_df = pd.read_csv('train_processed.csv')
     
-    # Ensure NLTK data is downloaded (for text preprocessing)
-    try:
-        stopwords.words('english')
-    except LookupError:
-        nltk.download('stopwords')
-        nltk.download('punkt')
-        nltk.download('wordnet')
+    # Ensure NLTK data is downloaded. This is crucial for Streamlit Cloud deployment.
+    nltk.download('stopwords')
+    nltk.download('punkt')
+    nltk.download('wordnet')
 
     # --- Generate model components on the fly ---
     # This replaces loading pre-computed .npy files
