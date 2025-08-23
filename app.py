@@ -54,7 +54,7 @@ def load_data():
     country_flags = {
         'US': '🇺🇸', 'France': '🇫🇷', 'Italy': '🇮🇹', 'Spain': '🇪🇸',
         'Portugal': '🇵🇹', 'Chile': '🇨🇱', 'Argentina': '🇦🇷',
-        'Austria': '🇦🇹', 'Australia': '�🇺', 'Germany': '🇩🇪'
+        'Austria': '🇦🇹', 'Australia': '🇦🇺', 'Germany': '🇩🇪'
     }
     
     return train_df, vectorizer, scaler, tfidf_train_vectors, train_numerical_scaled, country_flags
