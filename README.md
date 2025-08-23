@@ -42,10 +42,10 @@ This project uses the [Wine Reviews dataset](https://www.kaggle.com/datasets/zyn
 
 This project follows a comprehensive data science workflow:
 
-1.  **Exploratory Data Analysis (EDA):** Analyzed the Wine Reviews dataset to uncover patterns in pricing, scoring, and the language of wine descriptions. (Found in `[01_EDA_and_Data_Understanding.ipynb](https://github.com/adamfaik/VinoMatch-Recommender/blob/main/01_EDA_and_Data_Understanding.ipynb)`)
-2.  **Preprocessing and feature engineering:** Cleaned the data, handled missing values, and engineered new features like `value_score` and `readability_score`. (Found in `[02_Preprocessing_and_Feature_Engineering.ipynb](https://github.com/adamfaik/VinoMatch-Recommender/blob/main/02_Preprocessing_and_Feature_Engineering.ipynb)`)
-3.  **Model experimentation:** Systematically tested four different NLP and hybrid models (TF-IDF, Sentence-Transformers, custom Word2Vec, and a weighted hybrid model) to find the best performer. (Found in `[03_Model_Experimentation_and_Selection.ipynb](https://github.com/adamfaik/VinoMatch-Recommender/blob/main/03_Model_Experimentation_and_Selection.ipynb)`)
-4.  **Deployment:** The final hybrid model was integrated into an interactive web application using Streamlit and deployed on Streamlit Community Cloud. (Found in `[app.py](https://github.com/adamfaik/VinoMatch-Recommender/blob/main/app.py)`)
+1.  **Exploratory Data Analysis (EDA):** Analyzed the Wine Reviews dataset to uncover patterns in pricing, scoring, and the language of wine descriptions. (Found in [01_EDA_and_Data_Understanding.ipynb](https://github.com/adamfaik/VinoMatch-Recommender/blob/main/01_EDA_and_Data_Understanding.ipynb))
+2.  **Preprocessing and feature engineering:** Cleaned the data, handled missing values, and engineered new features like `value_score` and `readability_score`. (Found in [02_Preprocessing_and_Feature_Engineering.ipynb](https://github.com/adamfaik/VinoMatch-Recommender/blob/main/02_Preprocessing_and_Feature_Engineering.ipynb))
+3.  **Model experimentation:** Systematically tested four different NLP and hybrid models (TF-IDF, Sentence-Transformers, custom Word2Vec, and a weighted hybrid model) to find the best performer. (Found in [03_Model_Experimentation_and_Selection.ipynb](https://github.com/adamfaik/VinoMatch-Recommender/blob/main/03_Model_Experimentation_and_Selection.ipynb))
+4.  **Deployment:** The final hybrid model was integrated into an interactive web application using Streamlit and deployed on Streamlit Community Cloud. (Found in [app.py](https://github.com/adamfaik/VinoMatch-Recommender/blob/main/app.py))
 
 ---
 
