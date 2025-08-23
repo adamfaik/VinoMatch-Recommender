@@ -16,6 +16,12 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity, manhattan_distances
 from sklearn.preprocessing import MinMaxScaler
 
+# --- NLTK Data Download ---
+# This is placed at the top level to ensure it runs on every app startup in the cloud environment.
+nltk.download('stopwords')
+nltk.download('punkt')
+nltk.download('wordnet')
+
 # --- 2. Load Data and Model Components ---
 # Goal: Load all the pre-trained components and data needed for the app.
 # This is done once when the app starts to be efficient.
@@ -29,11 +35,6 @@ def load_data():
     # Load the main training dataframe
     train_df = pd.read_csv('train_processed.csv')
     
-    # Ensure NLTK data is downloaded. This is crucial for Streamlit Cloud deployment.
-    nltk.download('stopwords')
-    nltk.download('punkt')
-    nltk.download('wordnet')
-
     # --- Generate model components on the fly ---
     # This replaces loading pre-computed .npy files
     
